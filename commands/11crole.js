@@ -6,28 +6,24 @@ module.exports = {
 	description: 'List all members with custom roles',
 	group: '0',
 	async execute(message) {
-		const donator = message.guild.roles.cache.get('711467312196354048');
 		const vip = message.guild.roles.cache.get('714886315438768169');
-		const pr = message.guild.roles.cache.get('714831424796098560');
-		const bl = message.guild.roles.cache.get('712676825699975239');
-		const muted = message.guild.roles.cache.get('712843733716041778');
-		async function sendEmbeds(des, role, count, color) {
-			const arr = des.match(/.{1,2046}/g);
+		const prole = message.guild.roles.cache.get('743944566591324211');
+		const proom = message.guild.roles.cache.get('714831424796098560');
+		async function sendEmbeds(role) {
+			const arr = role.members.map(m => m.user).join(' ').match(/.{1,2046}/g);
 
 			for (const chunk of arr) {
 				const embed = new Discord.MessageEmbed()
-					.setColor(color)
-					.setTitle(`Members with \`${role}\` role :`)
+					.setColor(role.color)
+					.setTitle(`Members with \`${role.name}\` role :`)
 					.setDescription(chunk)
-					.setFooter(`Members » ${count}`, message.guild.iconURL());
+					.setFooter(`Members » ${role.members.size}`, message.guild.iconURL());
 				await message.channel.send({ embed });
 			}
 		}
-		if (!message.member.hasPermission('ADMINISTRATOR') && !message.member.roles.cache.has('708082413141622854')) return message.channel.send('**❌ - You do not have permissions to use this command.**');
-		await sendEmbeds(donator.members.map(m => m.user).join(' '), donator.name, donator.members.size, donator.color);
-		await sendEmbeds(vip.members.map(m => m.user).join(' '), vip.name, vip.members.size, vip.color);
-		await sendEmbeds(pr.members.map(m => m.user).join(' '), pr.name, pr.members.size, pr.color);
-		await sendEmbeds(bl.members.map(m => m.user).join(' '), bl.name, bl.members.size, bl.color);
-		await sendEmbeds(muted.members.map(m => m.user).join(' '), muted.name, muted.members.size, muted.color);
+		if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('**❌ - You do not have permissions to use this command.**');
+		await sendEmbeds(vip);
+		await sendEmbeds(prole);
+		await sendEmbeds(proom);
 	},
 };

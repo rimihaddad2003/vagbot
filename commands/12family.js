@@ -23,16 +23,13 @@ module.exports = {
 
 
 		async function sendEmbeds(list, title, count) {
-			const arr = list.match(/.{1,2046}/g);
 
-			for (const chunk of arr) {
-				const embed = new Discord.MessageEmbed()
-					.setColor('006B84')
-					.setTitle(title)
-					.setDescription(chunk)
-					.setFooter(`Members » ${count}`);
-				await message.channel.send({ embed });
-			}
+			const embed = new Discord.MessageEmbed()
+				.setColor('006B84')
+				.setTitle(title)
+				.setDescription(list)
+				.setFooter(`Members » ${count}`);
+			await message.channel.send({ embed });
 		}
 		if (message.member.hasPermission('ADMINISTRATOR')) {
 			await sendEmbeds(list1, 'Members with `VAG` tag in their name but **without the role** :', count1);
