@@ -1,0 +1,81 @@
+/* eslint-disable indent */
+const Discord = require('discord.js');
+
+module.exports = {
+	name: 'faq',
+	description: 'Send an answer to a frequently asked question',
+	group: '2',
+	execute(message) {
+		const faqembed = new Discord.MessageEmbed()
+			.setColor('#6281F0')
+			.setTitle('**__Frequently Asked Questions__**')
+			.setThumbnail(message.guild.iconURL())
+			.setDescription('`1` **مـعـلـومـات عـن رتـبـة `VIP`**\n\n`2` **مـعـلـومـات عـن الإدارة**\n\n`3` **مـعـلـومـات عـن رتـبـة `Builder`**\n\n`4` **مـعـلـومـات عـن الـروم الـخـاص**\n\n`5` **مـعـلـومـات عـن الـرتـبـة الـخـاصـة**\n\n`6` **مـعـلومـات عـن الـسـيـرفـر**')
+			.setFooter('choose by replying a number')
+			.setTimestamp();
+		const ansembed = new Discord.MessageEmbed()
+			.setColor('#6281F0')
+			.setTimestamp();
+		message.channel.send(faqembed).then(msg => {
+			const filter = m => message.author.id === m.author.id && !isNaN(m.content);
+			message.channel.awaitMessages(filter, { time: 60000, max: 1, errors: ['time'] })
+				.then(reply => {
+					const index = reply.first().content;
+					if (isNaN(index)) return message.channel.send('enter a working number');
+					switch (index) {
+						case '1':
+							msg.delete();
+							reply.first().delete();
+							ansembed
+								.setTitle('**__مـعـلـومـات عـن رتـبـة [VIP]__**')
+								.setDescription('**رتـبـة الـ VIP تـخـص الـدسـكـورد فـقـط ، يـمـكـنـك الـتـجـديـد قـبـل أنـتـهـاء مـدة الـرتـبـة**')
+								.addField('­\n** مـاهـي خـصـائـص الـرتـبـة ؟** <a:Arrow:747523849008185474>', '◈ روم صـوتـي / كـتـابـي خـاص فـيك **__أو__** رتـبـة بـلـونـك وأسـمك\n◈ قـدرة عـلـى تـغـيـر لـقـبـك\n◈ تـقـدر تتـحكـم فـي رومـك / رتـبـتـك بالـتـحـكـم الـكـامـل مـن نـاحـيـة الأسم أو اللـون الخ..')
+								.addField('­\n** كـيـف أعـرف كـم بـاقـي عـلـى رتـبـتـي ؟** <a:Arrow:747523849008185474>', '◈ تـفـتـح تـكـت يـخـص __دسـكـورد__ وتـشـرح لـهـم مـوضـوعـك')
+								.addField('­\n** كـم مـدة الـرتـبـة ؟** <a:Arrow:747523849008185474>', '◈ الـمـدة : `14` يـوم')
+								.addField('­\n** كـم سـعـر الـرتـبـة ؟** <a:Arrow:747523849008185474>', '◈ الـسـعـر : `20` ألـف كـريـديـت')
+								.addField('­\n** كـم سـعـر الـتـجـديـد ؟** <a:Arrow:747523849008185474>', '◈ الـسـعـر : `10` ألف كـريـديـت')
+								.addField('­', '**الـتـحـويـل لـ <@512603544227151872> فـقـط**')
+								.setFooter('Last Updated: 19/8/2020');
+							message.channel.send(ansembed);
+							break;
+						case '2':
+							msg.delete();
+							reply.first().delete();
+							ansembed
+								.setTitle('**__مـعـلـومـات عـن الإدارة__**')
+								.setDescription('**معلومات عن كل من إدارة الديسكورد و إدارة الماين كرافت الخاصة بالسيرفر**')
+								.addField('­\n** كـيـف أقـدم عـلـى الإدارة ؟** <a:Arrow:747523849008185474>', 'تـقـدم عـلـيـهـا فـي رومـات : \n <#739788826309820488> للـديـسـكـورد \n <#739461514481893437> للـمـايـن كـرافـت')
+								.addField('­\n** مـا فـوائـد الـرتـبـة ؟** <a:Arrow:747523849008185474>', '`1 -` فـعـالـيـات يـومـيـة لـهـم\n`2 -` تـخـفـيـض **__%5__** مـن أسـعار الـرتـب الـخـاصـة فـي الـديـسـكـورد\n`3 -` كـسـب الاحـتـرام مـن بـاقـي الأعـضـاء .')
+								.setFooter('Last Updated: 23/8/2020');
+							message.channel.send(ansembed);
+							break;
+						case '3':
+							msg.delete();
+							reply.first().delete();
+							break;
+						case '4':
+							msg.delete();
+							reply.first().delete();
+							break;
+						case '5':
+							msg.delete();
+							reply.first().delete();
+							break;
+						case '6':
+							msg.delete();
+							reply.first().delete();
+							break;
+						case '7':
+							msg.delete();
+							reply.first().delete();
+							break;
+						default:
+							msg.delete();
+							break;
+					}
+
+
+				});
+		});
+	},
+};
