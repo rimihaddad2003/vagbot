@@ -21,7 +21,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Ready!');
-	client.user.setActivity('Vagmemes Server | Type v!help', { type: 'WATCHING' });
+	client.user.setPresence({ activity: { name: 'Vagmemes Server | Type v!help', type: 'WATCHING' }, status: 'online' });
 });
 
 const invites = {};
@@ -89,7 +89,16 @@ client.on('guildMemberAdd', member => {
 			.setTimestamp()
 			.setFooter('Joined At » ')
 			.setColor('#0f8eff');
-		logChannel.send(inviteembed);
+		if (inviter) {
+			inviteembed
+				.setDescription(`**User » ${member} ,\nInvited By »** ${inviter}`);
+			logChannel.send(inviteembed);
+		}
+		if (!inviter) {
+			inviteembed
+				.setDescription(`**User » ${member} .**`);
+			logChannel.send(inviteembed);
+		}
 	});
 });
 
