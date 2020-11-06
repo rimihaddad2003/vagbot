@@ -28,11 +28,11 @@ module.exports = {
 			break;
 
 		case 'room':
-			msgembed.setDescription('> **`Private Room .`\nPrivate Room Name :\nVoice Room or Text Room :\nVisable or Hidden :\nLock or Unlock :\nWhitelisted Members :\nBlacklisted Members :**');
+			msgembed.setDescription('> **`Private Room .`**\n**Private Room Name :**\n**Voice Room or Text Room :**\n**Visable or Hidden :**\n**Lock or Unlock :**\n**Whitelisted Members :**\n**Blacklisted Members :**');
 			break;
 
 		case 'role':
-			msgembed.setDescription('> **`Private Role .`\nPrivate Role Name :\nRole Color :\nMembers :');
+			msgembed.setDescription('> **`Private Role .`**\n**Private Role Name :**\n**Role Color :**\n**Members :**');
 			break;
 
 		default:
