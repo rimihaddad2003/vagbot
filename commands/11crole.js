@@ -6,20 +6,18 @@ module.exports = {
 	description: 'List all members with custom roles',
 	group: '0',
 	async execute(message) {
-		const vip = message.guild.roles.cache.get('714886315438768169');
+		const vip = message.guild.roles.cache.get('708082421610053662');
 		const prole = message.guild.roles.cache.get('743944566591324211');
 		const proom = message.guild.roles.cache.get('714831424796098560');
 		async function sendEmbeds(role) {
-			const arr = role.members.map(m => m.user).join(' ').match(/.{1,2046}/g);
+			const arr = role.members.map(m => m.user).join(' ');
 
-			for (const chunk of arr) {
-				const embed = new Discord.MessageEmbed()
-					.setColor(role.color)
-					.setTitle(`Members with \`${role.name}\` role :`)
-					.setDescription(chunk)
-					.setFooter(`Members » ${role.members.size}`, message.guild.iconURL());
-				await message.channel.send({ embed });
-			}
+			const embed = new Discord.MessageEmbed()
+				.setColor(role.color)
+				.setTitle(`Members with \`${role.name}\` role :`)
+				.setDescription(arr)
+				.setFooter(`Members » ${role.members.size}`, message.guild.iconURL());
+			await message.channel.send({ embed });
 		}
 		if (!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('**❌ - You do not have permissions to use this command.**');
 		await sendEmbeds(vip);

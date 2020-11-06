@@ -1,0 +1,56 @@
+const rooms = ['762713113782517760', '738519483278426122', '738519568774987787', '749598011830698045', '738519981829914665', '738520012649922672', '761581461458780190'];
+module.exports = {
+	name: 'protection',
+	description: 'Turn Server Protection On/Off .',
+	group: '1',
+	execute(message, args, client) {
+		if (!message.member.roles.cache.has('774366958107754517')) return;
+		if (args[0] !== 'on' && args[0] !== 'off') return message.channel.send('**Enter An Option !**');
+		message.author.send('**:sparkles: - Please enter the password.**').then(() => {
+			message.channel.send('**:sparkles: - Please enter the password in your dm.**');
+			const filter = m => message.author.id === m.author.id;
+			message.author.dmChannel.awaitMessages(filter, { time: 60000, max: 1, errors: ['time'] })
+				.then(messages => {
+					if (messages.first().content !== 'us62d9') return message.author.send('**:x: - Wrong Password.**');
+					if (args[0] == 'on') {
+						message.guild.channels.cache.get('737732911431811222').updateOverwrite(message.guild.roles.everyone, { VIEW_CHANNEL: false });
+						message.guild.channels.cache.get('737732693231665223').updateOverwrite(message.guild.roles.everyone, { VIEW_CHANNEL: false });
+						message.guild.channels.create('𝚅erify', {
+							topic: 'السيرفر في وضع الحماية..يرجى الانتظار',
+							parent: message.guild.channels.cache.find(c => c.type == 'category' && c.name == '• 𝙿𝚛𝚘𝚝𝚎𝚌𝚝𝚒𝚘𝚗'),
+							permissionOverwrites: [
+								{
+									id: message.guild.roles.everyone,
+									allow: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
+								},
+							],
+							position: '1',
+							rateLimitPerUser: '15',
+							reason: `Protection On By : ${message.author.username}`,
+						});
+						rooms.forEach(room => {
+							message.guild.channels.cache.get(room).setRateLimitPerUser(10);
+						});
+						client.user.setPresence({ activity: { name: '🔴 Protecting Vagmemes !', type: 'WATCHING' }, status: 'dnd' });
+						message.channel.send('**Protection : On**');
+					}
+					if (args[0] == 'off') {
+						message.guild.channels.cache.get('737732911431811222').updateOverwrite(message.guild.roles.everyone, { VIEW_CHANNEL: true });
+						message.guild.channels.cache.get('737732693231665223').updateOverwrite(message.guild.roles.everyone, { VIEW_CHANNEL: true });
+						message.guild.channels.cache.find(c => c.name == '𝚅erify').delete();
+						rooms.forEach(room => {
+							message.guild.channels.cache.get(room).setRateLimitPerUser(1);
+						});
+						client.user.setPresence({ activity: { name: 'Vagmemes Server | Type v!help', type: 'WATCHING' }, status: 'online' });
+						message.channel.send('**Protection : Off**');
+					}
+				})
+				.catch(() => {
+					message.author.send('**:thinking: - Time out, you did not enter any input!**');
+				});
+		}).catch(() => {
+			message.channel.send('**❌ - I couldn\'t send help message to you, please check if your DM is open.**');
+			message.react('❌');
+		});
+	},
+};
