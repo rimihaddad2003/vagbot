@@ -23,6 +23,10 @@ module.exports = {
 									id: message.guild.roles.everyone,
 									allow: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
 								},
+								{
+									id: 708082422733996142,
+									deny: ['VIEW_CHANNEL'],
+								},
 							],
 							position: '1',
 							rateLimitPerUser: '15',
