@@ -24,7 +24,7 @@ module.exports = {
 									allow: ['SEND_MESSAGES', 'VIEW_CHANNEL'],
 								},
 								{
-									id: 708082422733996142,
+									id: '708082422733996142',
 									deny: ['VIEW_CHANNEL'],
 								},
 							],
