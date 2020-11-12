@@ -10,7 +10,7 @@ module.exports = {
 			message.channel.send('**:sparkles: - Please enter the password in your dm.**');
 			const filter = m => message.author.id === m.author.id;
 			message.author.dmChannel.awaitMessages(filter, { time: 60000, max: 1, errors: ['time'] })
-				.then(messages => {
+				.then(async messages => {
 					if (messages.first().content !== 'us62d9') return message.author.send('**:x: - Wrong Password.**');
 					if (args[0] == 'on') {
 						message.guild.channels.cache.get('737732911431811222').updateOverwrite(message.guild.roles.everyone, { VIEW_CHANNEL: false });
@@ -35,8 +35,10 @@ module.exports = {
 						rooms.forEach(room => {
 							message.guild.channels.cache.get(room).setRateLimitPerUser(10);
 						});
+						(await message.guild.members.fetch()).get('512333785338216465').roles.remove('708082414684995586');
 						client.user.setPresence({ activity: { name: '🔴 Protecting Vagmemes !', type: 'WATCHING' }, status: 'dnd' });
 						message.channel.send('**Protection : On**');
+						message.author.send('**Protection : On**');
 					}
 					if (args[0] == 'off') {
 						message.guild.channels.cache.get('737732911431811222').updateOverwrite(message.guild.roles.everyone, { VIEW_CHANNEL: true });
@@ -45,11 +47,14 @@ module.exports = {
 						rooms.forEach(room => {
 							message.guild.channels.cache.get(room).setRateLimitPerUser(1);
 						});
+						(await message.guild.members.fetch()).get('512333785338216465').roles.add('708082414684995586');
 						client.user.setPresence({ activity: { name: 'Vagmemes Server | Type v!help', type: 'WATCHING' }, status: 'online' });
 						message.channel.send('**Protection : Off**');
+						message.author.send('**Protection : Off**');
 					}
 				})
-				.catch(() => {
+				.catch(err => {
+					console.log(err);
 					message.author.send('**:thinking: - Time out, you did not enter any input!**');
 				});
 		}).catch(() => {

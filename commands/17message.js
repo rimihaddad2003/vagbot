@@ -32,7 +32,7 @@ module.exports = {
 			break;
 
 		case 'role':
-			msgembed.setDescription('> **`Private Role .`**\n**Private Role Name :**\n**Role Color :**\n**Members :**');
+			msgembed.setDescription('> **`Private Role .`**\n**Private Role Name :**\n**Role Color :**\n**Role Emoji:**\n**Members :**');
 			break;
 
 		default:
