@@ -6,7 +6,7 @@ module.exports = {
 	description: 'List all members with custom roles',
 	group: '0',
 	async execute(message) {
-		const vip = message.guild.roles.cache.get('708082421610053662');
+		const vip = message.guild.roles.cache.get('714886315438768169');
 		const prole = message.guild.roles.cache.get('743944566591324211');
 		const proom = message.guild.roles.cache.get('714831424796098560');
 		async function sendEmbeds(role) {
