@@ -4,7 +4,8 @@ module.exports = {
 	description: 'Send Messages in Tickets',
 	group: 1,
 	execute(message, args) {
-		if (!message.member.roles.cache.has('714938663988887613') || message.channel.parentID !== '738712818013962322') return;
+		if (message.channel.parentID !== '738712818013962322') return;
+                if (!message.member.roles.cache.has('714938663988887613') && !message.member.roles.cache.has('783072814306820128')) return;
 		const msgembed = new MessageEmbed()
 			.setAuthor('Vagmemes Ticket System .')
 			.setColor('#006B84')
