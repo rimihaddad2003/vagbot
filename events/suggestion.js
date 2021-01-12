@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 module.export = (message, client) => {
+                if (message.author.bot) return;
                 if (message.channel.name !== '・𝚂uggestions') return;
 		const sugembed = new MessageEmbed()
 			.setColor('#6281F0')
