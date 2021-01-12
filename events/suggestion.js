@@ -1,7 +1,8 @@
+const { MessageEmbed } = require('discord.js');
 module.export = {
   name: 'suggestion',
   async execute(message, client){
-		const sugembed = new Discord.MessageEmbed()
+		const sugembed = new MessageEmbed()
 			.setColor('#6281F0')
 			.setAuthor('Vagmemes Suggestions', message.guild.iconURL())
 			.setDescription(`**📑 \`Suggestion\` » \n ${message.content}**\n\n`)
