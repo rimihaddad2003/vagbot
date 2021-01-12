@@ -18,7 +18,6 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 	console.log(`${command.name}: ${command.description}`);
 }
-const suggestion = require('./events/suggestion');
 
 client.once('ready', () => {
 	console.log('Ready!');
@@ -52,9 +51,13 @@ client.on('message', async (message) => {
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
 
-  if (message.channel.name == '・𝚂uggestions') return suggestion.execute(message, client);
-
 	if (message.author.bot) return;
+
+        if (message.channel.name == '・𝚂uggestions') {
+        require('./events/suggestion')(message);
+        return;
+        }
+
 	if (!message.content.startsWith(prefix)) return;
 	if (message.channel.type == 'dm') return message.channel.send('**❌ - This command can only be used in Vagmemes server.**');
 
