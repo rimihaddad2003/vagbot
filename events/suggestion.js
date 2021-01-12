@@ -12,6 +12,6 @@ module.export = {
 		await message.delete();
 		await sug.react('796800628927234078');
 		await sug.react('796800690428182558');
-		}).catch(() => message.channel.send('**:no_entry: - An error occurred while sending the suggestion, please try again later')
+		}).catch(() => message.channel.send('**:no_entry: - An error occurred while sending the suggestion, please try again later'));
   }
 }
