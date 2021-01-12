@@ -14,7 +14,7 @@ module.exports = {
 				.then(messages => {
 					if (messages.first().content !== 'va97-efv') return message.author.send('**:x: - Wrong Password.**');
 
-					message.guild.channels.create('✎・𝙴vents', {
+					message.guild.channels.create('・𝙴vents', {
 						topic: 'Many Differents Events Hosted By Vagmemes Staff Team.',
 						parent: message.guild.channels.cache.find(c => c.type == 'category' && c.name == '• 𝙿𝚞𝚋𝚕𝚒𝚌'),
 						permissionOverwrites: [
