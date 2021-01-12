@@ -1,7 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-module.export = {
-  name: 'suggestion',
-  async execute(message, client){
+module.export = (message, client){
 		const sugembed = new MessageEmbed()
 			.setColor('#6281F0')
 			.setAuthor('Vagmemes Suggestions', message.guild.iconURL())
@@ -14,5 +12,4 @@ module.export = {
 		await sug.react('796800628927234078');
 		await sug.react('796800690428182558');
 		}).catch(() => message.channel.send('**:no_entry: - An error occurred while sending the suggestion, please try again later'));
-  }
 }
