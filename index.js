@@ -45,15 +45,15 @@ client.once('reconnecting', () => {
 client.once('disconnect', () => {
 	console.log('Disconnect!');
 });
-
+client.on('message', async (message) => {
+        require('./events/suggestion')(message);
+});
 client.on('message', async (message) => {
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 	const command = client.commands.get(commandName);
 
 	if (message.author.bot) return;
-        require('./events/suggestion')(message);
-
 	if (!message.content.startsWith(prefix)) return;
 	if (message.channel.type == 'dm') return message.channel.send('**❌ - This command can only be used in Vagmemes server.**');
 
