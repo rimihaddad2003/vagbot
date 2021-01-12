@@ -8,7 +8,7 @@ module.export = {
 			.setThumbnail(message.author.avatarURL({ dynamic: true }))
 			.setFooter(`By » ${message.author.username}`)
 			.setTimestamp();
-		message.channel.send(sugembed).then(sug => {
+		message.channel.send(sugembed).then(async sug => {
 		await message.delete();
 		await sug.react('796800628927234078');
 		await sug.react('796800690428182558');
