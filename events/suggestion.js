@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+
 module.export = (message) => {
                 if (message.author.bot) return;
                 if (message.channel.name !== '・𝚂uggestions') return;
