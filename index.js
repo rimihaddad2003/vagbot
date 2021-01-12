@@ -48,7 +48,7 @@ client.once('disconnect', () => {
 client.on('message', async (message) => {
                 if (message.author.bot) return;
                 if (message.channel.name !== '・𝚂uggestions') return;
-		const sugembed = new MessageEmbed()
+		const sugembed = new Discord.MessageEmbed()
 			.setColor('#6281F0')
 			.setAuthor('Vagmemes Suggestions', message.guild.iconURL())
 			.setDescription(`**📑 \`Suggestion\` » \n ${message.content}**\n\n`)
