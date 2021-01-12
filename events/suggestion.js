@@ -1,5 +1,5 @@
 const { MessageEmbed } = require('discord.js');
-module.export = (message, client){
+module.export = (message, client) => {
 		const sugembed = new MessageEmbed()
 			.setColor('#6281F0')
 			.setAuthor('Vagmemes Suggestions', message.guild.iconURL())
