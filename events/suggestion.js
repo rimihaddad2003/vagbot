@@ -1,6 +1,6 @@
 module.export = {
   name: 'suggestion',
-  execute(message, client){
+  async execute(message, client){
 		const sugembed = new Discord.MessageEmbed()
 			.setColor('#6281F0')
 			.setAuthor('Vagmemes Suggestions', message.guild.iconURL())
