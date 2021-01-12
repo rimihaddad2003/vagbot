@@ -18,7 +18,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 	console.log(`${command.name}: ${command.description}`);
 }
-const suggestion = require('./events/suggestions');
+const suggestion = require('./events/suggestion');
 
 client.once('ready', () => {
 	console.log('Ready!');
